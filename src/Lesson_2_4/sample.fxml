@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Lesson_2_4.Controller">
+
+    <TextArea fx:id="textArea" prefWidth="200" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <TextField fx:id="textField" prefWidth="200" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <Button fx:id="message" alignment="CENTER_RIGHT" contentDisplay="RIGHT" onAction="#onClickBtn" text="message" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+   <BorderPane prefHeight="200.0" prefWidth="200.0" />
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>

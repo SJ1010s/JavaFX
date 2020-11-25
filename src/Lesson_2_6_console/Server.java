@@ -13,6 +13,7 @@ public class Server {
     static DataInputStream in;
     static DataOutputStream out;
     private static String str = "";
+    static String text;
 
     public static void main(String[] args) {
         socket = null;
@@ -23,8 +24,9 @@ public class Server {
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
 
+
             Thread threadOut = new Thread(() -> {
-                while(true){
+                while (true) {
                     serverMsg();
                 }
             });
@@ -35,14 +37,13 @@ public class Server {
 
                 str = in.readUTF();
 
-                System.out.println(str);
+
+                System.out.println("Клиент: " + str);
                 if (str.equals("/end")) {
                     break;
                 }
 //             out.writeUTF("Эхо: " + str);
             }
-
-
         } catch (
                 IOException e) {
             e.printStackTrace();
@@ -52,8 +53,8 @@ public class Server {
 
     public static void serverMsg() {
         try {
-            String text = sc.next();
-            out.writeUTF(socket.getLocalPort() + ": " + text);
+            text = sc.next();
+            out.writeUTF(text);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -16,6 +17,7 @@ public class Client {
     DataInputStream in;
     DataOutputStream out;
     Scanner sc = new Scanner(System.in);
+    String text;
 
     public static void main(String[] args) {
         Client evgeniy = new Client();
@@ -35,6 +37,7 @@ public class Client {
                         Thread threadOut = new Thread(() -> {
                             while(true) {
                                 sendMsg();
+
                             }
                         });
                         threadOut.setDaemon(true);
@@ -42,15 +45,13 @@ public class Client {
 
                         while (true) {
 
-                            String str = null;
+                            String str = "";
                             str = in.readUTF();
-
                             if (str.equals("/end")) {
                                 System.out.println("Клиент отключился");
                                 break;
                             }
-
-                            System.out.println("Клиент: " + str);
+                            System.out.println("Сервер: " + str);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -74,8 +75,8 @@ public class Client {
 
     public void sendMsg() {
         try {
-            String text = sc.next();
-            out.writeUTF(socket.getLocalPort() + ": " + text);
+            text = sc.next();
+            out.writeUTF(text);
         } catch (IOException e) {
             e.printStackTrace();
         }

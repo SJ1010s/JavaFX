@@ -1,4 +1,4 @@
-package Lesson_2_6.server;
+package server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -12,9 +12,11 @@ public class Server {
     ServerSocket server = null;
     Socket socket = null;
     List<ClientHandler> clients;
+    private AuthService authService;
 
     public Server() {
         clients = new Vector<>();
+        authService = new SimpleAuthService();
 
         try {
             server = new ServerSocket(PORT);
@@ -23,7 +25,7 @@ public class Server {
             while (true) {
                 socket = server.accept();
                 System.out.println("Клиент подключился");
-                clients.add(new ClientHandler(this, socket));
+                new ClientHandler(this, socket);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -36,9 +38,23 @@ public class Server {
         }
     }
 
-    void broadCastMsg(String msg) {
+    void broadCastMsg(ClientHandler sender, String msg) {
+        String message = String.format("%s : %s", sender.getNickname(), msg);
         for (ClientHandler client : clients) {
-            client.sendMsg(msg + "\n");
+            client.sendMsg(message + "\n");
         }
     }
+
+    public void subscribe(ClientHandler clientHandler){
+        clients.add(clientHandler);
+    }
+
+    public void unsubscribe(ClientHandler clientHandler){
+        clients.remove(clientHandler);
+    }
+
+    public AuthService getAuthService(){
+        return authService;
+    }
+
 }

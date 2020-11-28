@@ -1,4 +1,4 @@
-package Lesson_2_6.clietn;
+package clietn;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

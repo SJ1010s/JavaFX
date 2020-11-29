@@ -1,4 +1,4 @@
-package server;
+package Lesson_2_6.server;
 
 import java.util.ArrayList;
 import java.util.List;

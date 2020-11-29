@@ -1,4 +1,4 @@
-package server;
+package Lesson_2_6.server;
 
 public interface AuthService {
 

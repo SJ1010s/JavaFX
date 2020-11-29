@@ -1,4 +1,6 @@
-package server;
+package Lesson_2_6.server;
+
+import Lesson_2_6_console.Client;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -8,7 +10,7 @@ import java.util.Vector;
 
 public class Server {
 
-    private static int PORT = 8189;
+    private static int PORT = 8191;
     ServerSocket server = null;
     Socket socket = null;
     List<ClientHandler> clients;
@@ -42,6 +44,20 @@ public class Server {
         String message = String.format("%s : %s", sender.getNickname(), msg);
         for (ClientHandler client : clients) {
             client.sendMsg(message + "\n");
+        }
+    }
+
+    void personalBroadCastMsg(ClientHandler sender, String msg){
+       // Boolean nickNameTrue = false;
+        String[] msgFormat = msg.split("\\s", 3);
+        String message = String.format("%s от %s : %s", "Лично", sender.getNickname(), msgFormat[2]);
+        for (ClientHandler client : clients){
+            if ((client.getNickname()).equals(msgFormat[1])){
+                client.sendMsg(message + "\n");
+                sender.sendMsg(message + "\n");
+   //             nickNameTrue = true;
+                break;
+            }
         }
     }
 

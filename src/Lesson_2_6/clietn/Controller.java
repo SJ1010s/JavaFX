@@ -1,4 +1,4 @@
-package clietn;
+package Lesson_2_6.clietn;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -24,7 +24,7 @@ public class Controller implements Initializable {
     public TextField textField;
 
     private final String IP_ADDRESS = "localhost";
-    private final int PORT = 8189;
+    private final int PORT = 8191;
     @FXML
     public HBox authPanel;
     @FXML
@@ -139,7 +139,7 @@ public class Controller implements Initializable {
 
     private void setTitle(String nick) {
         Platform.runLater(() -> {
-                ((Stage) textField.getScene().getWindow()).setTitle(TITLE + " " + nick);
-    });
-}
+            ((Stage) textField.getScene().getWindow()).setTitle(TITLE + " " + nick);
+        });
+    }
 }

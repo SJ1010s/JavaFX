@@ -1,6 +1,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox fx:controller="clietn.Controller"
+<VBox fx:controller="Lesson_2_6.clietn.Controller"
       xmlns:fx="http://javafx.com/fxml" alignment="center">
 
     <HBox fx:id="authPanel" visible="true" managed="true">
